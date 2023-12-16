@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Peta:wght@400&display=swap">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column; /* Center items vertically */
+      height: 100vh;
+      margin: 0;
+      background-color: #bababa;
+      
+      
+    }
+
+    .fancy-button {
+      background-color: #000; /* Black */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      font-family: 'Lexend Peta', sans-serif; /* Use Lexend font */
+      letter-spacing: -2px; /* Adjust letter spacing */
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5)
+     
+  
+
+    }
+
+    .fancy-button-red {
+      background-color: #ff1100; /* Red */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      font-family: 'Lexend Peta', sans-serif; /* Use Lexend font */
+      letter-spacing: -2px; /* Adjust letter spacing */
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2)
+    }
+
+    .shop-button {
+      background-color: #0077cc; /* Blue */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      font-family: 'Lexend Peta', sans-serif; /* Use Lexend font */
+      letter-spacing: -2px; /* Adjust letter spacing */
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-top: 20px; /* Add margin at the top to separate buttons */
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2)
+    }
+
+    .fancy-button:hover{
+      background-color: #333; /* Darker shade on hover */
+      transform: scale(1.15);
+    }
+
+    .fancy-button:active{
+      transform: scale(0.95); /* Scale down when button is pressed */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Click effect box shadow */
+    }
+
+    .points {
+      font-size: 20px;
+      margin-top: 20px;
+      text-align: center;
+      font-family: 'Lexend Peta', sans-serif;
+      letter-spacing: -4px;
+      font-weight: normal;
+      margin-bottom: 20px; /* Add margin at the bottom to separate button and points */
+    }
+
+    .reset-button {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+    }
+    
+      .shop-button {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2)
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .modal-buttons {
+      margin-top: 20px;
+    }
+    
+           .fancy-button-red:hover {
+      background-color: #9e0b00; /* Darker shade on hover */
+      transform: scale(1.15)
+    }
+
+    .fancy-button-red:active {
+      transform: scale(0.95); /* Scale down when button is pressed */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Click effect box shadow */
+    }
+    
+           .shop-button:hover {
+      background-color: #004c82; /* Darker shade on hover */
+      transform: scale(1.15)
+    }
+
+    .shop-button:active {
+      transform: scale(0.95); /* Scale down when button is pressed */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Click effect box shadow */
+    }
+  </style>
+  <title>Fancy Button</title>
+</head>
+<body>
+  <div class="points" id="points">Points: 0</div>
+  <button class="fancy-button" onclick="incrementPoints()">Click Me</button>
+  <button class="fancy-button-red reset-button" onclick="openModal()">Erase Points</button>
+  <button class="shop-button" onclick="openShopModal()">Shop</button>
+
+  <div class="modal" id="myModal">
+    <div class="modal-content">
+      <p class="points" >Do you want to erase your points?</p>
+      <div class="modal-buttons">
+        <button class="fancy-button-red" onclick="erasePoints(), closeModal()">Yes</button>
+        <button class="fancy-button" onclick="closeModal()">No, Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="shopModal">
+    <div class="modal-content">
+      <button class="fancy-button-red" onclick="buy(), closeShopModal()">Buy 2x Multiplier</button>
+      <div> <p> </p> </div>
+       <div> </div>
+       <button class="fancy-button-red" onclick="buytow(), closeShopModal()">Buy 5x Multiplier</button>
+      <div class="modal-buttons">
+        <button class="fancy-button" onclick="closeShopModal()">Close</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal" id="buy">
+    <div class="modal-content">
+
+      <p class="points" >Buy a 2x Multiplier for 200 points?</p>
+      <button class="fancy-button-red" onclick="purchasePerk()">Buy 2x Multiplier</button>
+      <div class="modal-buttons">
+        <button class="fancy-button" onclick="wat()">No, Cancel</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal" id="buy2">
+    <div class="modal-content">
+
+      <p class="points" >Buy a 5x Multiplier for 600 points?</p>
+      <button class="fancy-button-red" onclick="purchasePerktwo()">Buy 5x Multiplier</button>
+      <div class="modal-buttons">
+        <button class="fancy-button" onclick="wattwo()">No, Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+       let points = 0;
+    let perkMultiplier = 1;
+
+    // Load saved points from localStorage on page load
+    window.onload = function() {
+      let savedData = JSON.parse(localStorage.getItem('savedData'));
+      if (savedData !== null) {
+        points = savedData.points;
+        perkMultiplier = savedData.perkMultiplier;
+        updatePoints();
+      }
+    };
+
+    // Save points to localStorage
+    function saveData() {
+      localStorage.setItem('savedData', JSON.stringify({ points, perkMultiplier }));
+    }
+
+    // Update the points display
+    function updatePoints() {
+      document.getElementById("points").innerText = "Points: " + points;
+    }
+
+    // Increment points and save
+    function incrementPoints() {
+      points += perkMultiplier;
+      updatePoints();
+      saveData();
+    }
+    
+        function erasePoints() {
+      points = 0;
+      updatePoints();
+      saveData();
+    }
+    function openModal() {
+      document.getElementById("myModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+
+
+    function openShopModal() {
+      document.getElementById("shopModal").style.display = "flex";
+    }
+
+    function closeShopModal() {
+      document.getElementById("shopModal").style.display = "none";
+    }
+
+    function purchasePerk() {
+      if (points >= 200) {
+        points -= 200;
+        perkMultiplier *= 2;
+        document.getElementById("points").innerText = "Points: " + points;
+        alert("You purchased the 2x Multiplier! Your points are now multiplied by 2x.");
+        wat();
+      } else {
+        alert("Not enough points to purchase the 2x Multiplier.");
+        wat();
+      }
+    }
+    
+        function purchasePerktwo() {
+      if (points >= 600) {
+        points -= 600;
+        perkMultiplier *= 2;
+        document.getElementById("points").innerText = "Points: " + points;
+        alert("You purchased the 5x Multiplier! Your points are now multiplied by 2x.");
+        wat();
+      } else {
+        alert("Not enough points to purchase the 2x Multiplier.");
+        wat();
+      }
+    }
+    
+     function buy() {
+      document.getElementById("buy").style.display = "flex";
+    }
+    
+    function wat() {
+      document.getElementById("buy").style.display = "none";
+    }
+    
+       function buytow() {
+      document.getElementById("buy2").style.display = "flex";
+    }
+    
+     function wattwo() {
+      document.getElementById("buy2").style.display = "none";
+    }
+
+
+    
+
+  </script>
+</body>
+</html>
